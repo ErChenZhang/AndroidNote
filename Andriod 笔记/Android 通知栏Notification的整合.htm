@@ -1,0 +1,1738 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>  
+
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它） - 未来之路 的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="folly在Facebook内部广泛使用的一个c++库，是开源的，github地址： https://github.com/facebook/folly之前的boost库给我们带来了很多方便，比如智能指针之类的。 从c++11开始，对std标准库有了很大的补充，大大方便了c++程序员。folly是Facebook open source library的缩写，其中用到了大量的C++11新标准，代" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="http://static.blog.csdn.net/scripts/jquery-version.js"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/tracking.js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/light_blue/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/vipzjyno1/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</head>
+<body>
+
+
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/vipzjyno1">未来之路 的专栏</a></h2>
+            <h3>只要你做的够好, 终有一天, 你会发现你得到的远比失去的要多.</h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        
+     
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>           
+                <li id="btnContents"><a href="http://blog.csdn.net/vipzjyno1?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/vipzjyno1?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/vipzjyno1/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "vipzjyno1";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/vipzjyno1";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://bss.csdn.net/m/topic/edu_exam
+">
+<font color=blue>2017直通软考，拿证无忧
+
+
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp
+
+<a href="http://edu.csdn.net/huiyiCourse/detail/274
+">
+<font color=red>程序员简历优化指南！ 
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/PK.html">
+<font color=blue>【观点】移动原生App开发 PK HTML 5开发
+</font></a>
+
+&nbsp;&nbsp;&nbsp;
+
+<a href="http://bss.csdn.net/m/product/aliyun_essay/index
+">
+<font color=red>云端应用征文大赛，秀绝招，赢无人机！
+</font></a>
+
+
+</div>                        </div>
+                        
+
+
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0" />
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+      
+      var fasrc="http://my.csdn.net/my/favorite/miniadd?t=Android+%e9%80%9a%e7%9f%a5%e6%a0%8fNotification%e7%9a%84%e6%95%b4%e5%90%88+%e5%85%a8%e9%9d%a2%e5%ad%a6%e4%b9%a0+%ef%bc%88%e4%b8%80%e4%b8%aaDEMO%e8%ae%a9%e4%bd%a0%e5%ae%8c%e5%85%a8%e4%ba%86%e8%a7%a3%e5%ae%83%ef%bc%89&u=http://blog.csdn.net/vipzjyno1/article/details/25248021/"
+
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/vipzjyno1/article/details/25248021">
+        <font color="red">[置顶]</font>
+        Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_l">
+            <span class="link_categories">
+            标签：
+              <a href='http://www.csdn.net/tag/%e9%80%9a%e7%9f%a5%e6%a0%8f' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">通知栏</a><a href='http://www.csdn.net/tag/Notification' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">Notification</a><a href='http://www.csdn.net/tag/Android' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">Android</a><a href='http://www.csdn.net/tag/PendingIntent' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">PendingIntent</a><a href='http://www.csdn.net/tag/DEMO' target=_blank onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_tag']);">DEMO</a>
+            </span>
+        </div>
+        <div class="article_r">
+            <span class="link_postdate">2014-05-15 07:50</span>
+            <span class="link_view" title="阅读次数">167508人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(125)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('Android+%e9%80%9a%e7%9f%a5%e6%a0%8fNotification%e7%9a%84%e6%95%b4%e5%90%88+%e5%85%a8%e9%9d%a2%e5%ad%a6%e4%b9%a0+%ef%bc%88%e4%b8%80%e4%b8%aaDEMO%e8%ae%a9%e4%bd%a0%e5%ae%8c%e5%85%a8%e4%ba%86%e8%a7%a3%e5%ae%83%ef%bc%89','25248021');return false;" title="收藏">收藏</a></span>
+             <span class="link_report"> <a href="#report" onclick="javascript:report(25248021,2);return false;" title="举报">举报</a></span>
+
+        </div>
+    </div>
+    <div class="embody"  style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('2050837','vipzjyno1','top','25248021');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">android<em>（19）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/vipzjyno1/article/category/2050837"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_2050837">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>  
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>在android的应用层中，涉及到很多应用框架，例如：Service框架，Activity管理机制，Broadcast机制，对话框框架，标题栏框架，状态栏框架，通知机制，ActionBar框架等等。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span><span style="white-space:pre"></span>下面就来说说经常会使用到通知机制中的通知栏框架（<span style="color:rgb(51,51,51)">Notificaiton</span>），它适用于交互事件的通知。它是位于顶层可以展开的通知列表。它会时不时的提醒你什么软件该更新了，什么人发你微信消息了等。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">（网上看了下，全面介绍的文章不多，所以就萌生了写这篇的念头，随便当作回顾笔记。<span style="color:rgb(51,51,51)">下面我就通过官方文档、源代码、书上的一些资料汇总下这一块的知识，并通过一个通知栏的汇总DEMO让大家更好的了解这个类的使用，内容有点多，可以根据需求看目录学习</span>）。</span></p>
+<p><br>
+</p>
+<p>Notificaiton状态通知栏：</p>
+<p><br>
+</p>
+<h1><span style="color:#cc0000">功能作用</span></h1>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="font-weight:normal"><br>
+</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="font-weight:normal">1.显示接收到短消息、即使消息等信息 （如QQ、微信、新浪、短信） &nbsp;<br>
+</span><span style="font-weight:normal">2.显示客户端的推送消息（如有新版本发布，广告，推荐新闻等）&nbsp;<br>
+</span><span style="font-weight:normal">3.显示正在进行的事物（例如：后台运行的程序）（如音乐播放器、版本更新时候的下载进度等）</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="font-weight:normal"><br>
+</span></span></p>
+<h1><span style="color:rgb(204,0,0); font-family:Arial">思维导图</span><span style="color:rgb(204,0,0); font-family:Arial">结构</span></h1>
+<p><span style="color:#cc0000"><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></span></p>
+<p><span style="color:#cc0000"><span style="font-family:Microsoft YaHei; font-size:14px">思维导图的大体结构（按照各个节点延伸拓展学习）</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:rgb(51,51,51)">Notificaiton -- service &nbsp; --&nbsp;BroadcastReceiver &nbsp;-- Intent（flag、Action等属性应用） -- &nbsp;<span style="color:rgb(51,51,51); line-height:26px">PendingIntent</span></span><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; color:#cc0000">感慨：</span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:rgb(51,51,51)">一个Notificaiton通知的拓展使用就要涉及与4大组建的配合，所以学好整体的知识体系。</span><br>
+</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; color:#cc0000">联系：</span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">1.由于<span style="color:rgb(51,51,51)">service 是在后台运行，所以它意图做什么我们看不到，可以通过<span style="color:rgb(51,51,51)">Notificaiton 来显示提醒（如音乐的后台播放）。</span></span></span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="color:rgb(51,51,51)"><span style="color:rgb(51,51,51)"><span style="white-space:pre"><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:normal">2.</span>service服务和<span style="color:rgb(51,51,51)">BroadcastReceiver广播相结合，在加上<span style="color:rgb(51,51,51)">Notificaiton&nbsp;显示（如程序的后台更新）。</span></span></span></span></span></span></span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">3.<span style="color:rgb(51,51,51)">Intent作为意图处理，和<span style="color:rgb(51,51,51)">Notificaiton的点击时间紧密结合在了一起，并且与<span style="color:rgb(51,51,51); white-space:pre">BroadcastReceiver和</span><span style="color:rgb(51,51,51); white-space:pre">service的联系也紧密不可以分割</span>。</span></span></span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">（<span style="color:rgb(51,51,51)">service 在后台之后通过<span style="color:rgb(51,51,51); white-space:pre">BroadcastReceiver来通知<span style="color:rgb(51,51,51); white-space:pre">Notificaiton&nbsp;显示相关东西，在通过<span style="color:rgb(51,51,51)">Intent完成用户的意图操作</span></span></span></span>）</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; color:#990000; text-decoration:none; line-height:30px">相关文档：<a target="_blank" target="_blank" href="http://blog.csdn.net/vipzjyno1/article/details/25463457" style="text-decoration:none; line-height:30px">Activity启动模式
+ 及 Intent Flags 与 栈 的关联分析</a></span><br>
+</p>
+<p><br>
+</p>
+<h1><span style="font-family:Arial"><span style="font-size:24px; color:#cc0000">对应的官方链接</span></span></h1>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></p>
+<div style="background-color:inherit; font-family:微软雅黑; font-size:14px"><br>
+</div>
+<div style="background-color:inherit; font-family:微软雅黑; font-size:14px">设计文档 ： &nbsp;&nbsp;</div>
+<div style="background-color:inherit; font-family:微软雅黑; font-size:14px"><span style="color:rgb(51,51,51); font-family:微软雅黑; font-size:14px"><span style="white-space:pre"></span>官方<span style="color:rgb(51,51,51); font-family:微软雅黑; font-size:14px"><span style="color:rgb(51,51,51); font-family:微软雅黑; font-size:14px">：</span></span></span><a target="_blank" target="_blank" href="http://developer.android.com/design/patterns/notifications.html" style="font-family:微软雅黑; font-size:14px; background-color:inherit">http://developer.android.com/design/patterns/notifications.html</a><br>
+</div>
+<div style="background-color:inherit; font-family:微软雅黑; font-size:14px"><span style="white-space:pre"></span>译文：<a target="_blank" target="_blank" href="http://adchs.github.io/patterns/notifications.html" style="background-color:inherit; font-family:微软雅黑; font-size:14px">http://adchs.github.io/patterns/notifications.html</a></div>
+<div style="background-color:inherit; font-family:微软雅黑; font-size:14px">使用教程 ：<a target="_blank" target="_blank" href="http://developer.android.com/training/notify-user/index.html" style="font-family:微软雅黑; font-size:14px; background-color:inherit">http://developer.android.com/training/notify-user/index.html</a><span style="color:rgb(51,51,51); font-family:微软雅黑; font-size:14px">&nbsp;</span></div>
+<span style="color:rgb(51,51,51); font-family:微软雅黑; font-size:14px">开发文档 ：</span><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/app/Notification.html" style="background-color:inherit; font-family:微软雅黑; font-size:14px">http://developer.android.com/reference/android/app/Notification.html</a>
+<p></p>
+<p><span style="line-height:20px"><span style="background-color:rgb(255,255,255)"><em><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></em></span></span></p>
+<h1><span style="font-family:SimSun; font-size:24px; color:#cc0000">大体了解</span></h1>
+<p><span style="line-height:20px"><span style="background-color:rgb(255,255,255)"><em><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></em></span></span></p>
+<p><span style="line-height:20px"><span style="background-color:rgb(255,255,255)"><em><span style="font-family:Microsoft YaHei; font-size:14px">Notification支持文字内容显示、震动<span style="line-height:20px"><em>、</em></span>三色灯<span style="line-height:20px"><em>、</em></span>铃声等多种提示形式，在默认情况下，Notification仅显示消息标题<span style="line-height:20px"><em>、</em></span>消息内容<span style="line-height:20px"><em>、</em></span>送达时间这3项内容。以下就是通知的基本布局。</span></em></span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)"><span style="line-height:20px"><em>通知的基本布局</em></span>：</span></p>
+<p><img class="nomarginRight" src="http://adchs.github.io/patterns/notifications_pattern_anatomy.png" alt="" style="margin:0px 0px 10px; padding:0px; border:0px; max-width:100%; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:20px; background-color:rgb(249,249,249)"></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">普通视图：</span></p>
+<p></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>高度64dp</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>大试图的通知在展开前也显示为普通视图</span></span></p>
+<img src="http://developer.android.com/images/ui/notifications/normal_notification_callouts.png" alt="" name="figure3" height="153" title="Android文档笔记：通知（一）" style="margin:0px 0px 15px; padding:0px; border:0px; list-style:none; vertical-align:middle; max-width:100%; color:rgb(34,34,34); font-family:roboto,sans-serif; font-size:14px; line-height:19px; background-color:rgb(249,249,249)"><br>
+<p><span style="line-height:20px"><span style="font-family:Microsoft YaHei; font-size:14px">元素：</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:20px"><span style="line-height:27px">1.&nbsp;</span><span style="line-height:27px">标题 &nbsp; Title/Name</span><br>
+</span><span style="line-height:20px"></span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">2<span style="font-family:'Microsoft YaHei'; font-size:14px; line-height:27px">.&nbsp;</span><span style="line-height:27px">大图标
+ &nbsp;Icon/Photo</span></span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="line-height:27px"><span style="font-family:Microsoft YaHei; font-size:14px">3<span style="font-family:'Microsoft YaHei'; font-size:14px; line-height:27px">.&nbsp;</span>内容文字 &nbsp;&nbsp;</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px"><span style="font-family:Microsoft YaHei; font-size:14px">4<span style="font-family:'Microsoft YaHei'; font-size:14px; line-height:27px">.&nbsp;</span>内容信息 &nbsp;&nbsp;<span style="line-height:27px">MESSAGE</span></span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">5<span style="font-family:'Microsoft YaHei'; font-size:14px; line-height:27px">.&nbsp;</span>小图标 Secondary
+ Icon</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">6<span style="font-family:'Microsoft YaHei'; font-size:14px; line-height:27px">.&nbsp;</span>通知的时间 Timestamp,默认为系统发出通知的时间，也可通过setWhen()来设置</span></span></p>
+<br>
+<br>
+<h1><span style="font-family:SimSun; font-size:24px; color:#cc0000">相关分析</span></h1>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">状态通知<span style="line-height:26px">栏主要涉及到</span>2个类： &nbsp;<span style="line-height:26px">Notification 和&nbsp;</span>NotificationManager&nbsp;</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="line-height:26px"><span style="font-family:Microsoft YaHei; font-size:14px">Notification为通知信息类，它里面对应了通知栏的各个属性</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">NotificationManager&nbsp;： &nbsp;是状态<span style="line-height:26px">栏</span>通知的管理类，负责发通知、清除通知等操作。</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">注意：NotificationManager 是一个系统Service，所以必须通过&nbsp;<code>getSystemService(NOTIFICATION_SERVICE)方法来获取，方法如下。</code></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_2_6807034"  name="code" class="java">NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</pre>
+<p></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; font-family:Arial; font-size:14px; line-height:26px">
+<code><br>
+</code></p>
+<h1><span style="font-family:SimSun; font-size:24px; color:#cc0000">使用步骤：</span></h1>
+<p><span style="font-family:'Microsoft YaHei'; background-color:rgb(249,249,249); line-height:26px"><span style="font-size:18px"><br>
+</span></span></p>
+<h2><span style="font-family:'Microsoft YaHei'; background-color:rgb(249,249,249); line-height:26px"><span style="font-size:18px">流程模块：</span></span></h2>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:rgb(249,249,249)"><span style="font-family:Microsoft YaHei; font-size:14px">第一步：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">创建一个通知栏的<span style="line-height:26px">Builder构造类 &nbsp;（</span>Create a Notification Builder）</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">第二步：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:26px">定义通知栏的Action &nbsp;（</span>Define the Notification's Action）</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">第三步：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">设置通知栏点击事件 &nbsp; &nbsp;（Set the Notification's Click Behavior）</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">第四步：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="background-color:inherit"><span style="font-family:Microsoft YaHei; font-size:14px">通知 &nbsp; （Issue the Notification）</span></span></p>
+<p><br>
+</p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">代码模块：</span></h2>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><span style="font-family:'Microsoft YaHei'; font-size:14px"><br>
+</span></span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><span style="font-family:'Microsoft YaHei'; font-size:14px">实现系统默认的通知栏效果：</span><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">第一步：获取状态通知栏管理：</span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_2_6807034"  name="code" class="java">NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);</pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">第二步：实例化通知栏构造器NotificationCompat.Builder：</span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_3_4700607"  code_snippet_id="346153" snippet_file_name="blog_20140515_3_4700607" name="code" class="java">NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);</pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">第三步：对Builder进行配置：</span></p>
+<p></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"></span></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_4_5649889"  code_snippet_id="346153" snippet_file_name="blog_20140515_4_5649889" name="code" class="java">mBuilder.setContentTitle(&quot;测试标题&quot;)//设置通知栏标题
+	.setContentText(&quot;测试内容&quot;) /<span style="font-family: Arial;">/设置通知栏显示内容</span>
+	.setContentIntent(getDefalutIntent(Notification.FLAG_AUTO_CANCEL)) //设置通知栏点击意图
+//	.setNumber(number) //设置通知集合的数量
+	.setTicker(&quot;测试通知来啦&quot;) //通知首次出现在通知栏，带上升动画效果的
+	.setWhen(System.currentTimeMillis())//通知产生的时间，会在通知信息里显示，一般是系统获取到的时间
+	.setPriority(Notification.PRIORITY_DEFAULT) //设置该通知优先级
+//	.setAutoCancel(true)//设置这个标志当用户单击面板就可以让通知将自动取消  
+	.setOngoing(false)//ture，设置他为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)
+	.setDefaults(Notification.DEFAULT_VIBRATE)//向通知添加声音、闪灯和振动效果的最简单、最一致的方式是使用当前的用户默认设置，使用defaults属性，可以组合
+	//Notification.DEFAULT_ALL  Notification.DEFAULT_SOUND 添加声音 // requires VIBRATE permission
+	.setSmallIcon(R.drawable.ic_launcher);//设置通知小ICON</pre>
+<p><br>
+</p>
+<h3><span style="font-family:Microsoft YaHei; font-size:18px">对应的各个方法的属性（部分方法以上代码中已经作注释，就不再介绍）：</span></h3>
+<p></p>
+<p></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:18px">（1）方法：设置提醒标志符Flags</span></h4>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">功能：提醒标志符，向通知添加声音、闪灯和振动效果等设置达到通知提醒效果，可以组合多个属性</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">有2种设置方法：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">1.实例化通知栏之后通过给他添加.flags属性赋&#20540;。</span></p>
+<p style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_5_9489110"  code_snippet_id="346153" snippet_file_name="blog_20140515_5_9489110" name="code" class="java">		Notification notification = mBuilder.build();
+		notification.flags = Notification.FLAG_AUTO_CANCEL;</pre><span style="font-family:Microsoft YaHei; font-size:14px">2.通过setContentIntent(<a target="_blank" target="_blank" class="header" href="">PendingIntent</a> intent)方法中的意图设置对应的flags</span>
+<p></p>
+<p style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_19_2341975"  code_snippet_id="346153" snippet_file_name="blog_20140515_19_2341975" name="code" class="java">	public PendingIntent getDefalutIntent(int flags){
+		PendingIntent pendingIntent= PendingIntent.getActivity(this, 1, new Intent(), flags);
+		return pendingIntent;
+	}</pre><span style="font-family:Microsoft YaHei; font-size:14px">提醒标志符成员：</span>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_SHOW_LIGHTS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//三色灯提醒，在使用三色灯提醒时候必须加该标志符</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_ONGOING_EVENT &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//发起正在运行事件（活动中）</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; padding:0px; margin:0px; white-space:pre">Notification.FLAG_INSISTENT</span><span style="line-height:22px">&nbsp; &nbsp;<span style="white-space:pre"></span>//让声音、振动无限循环，直到用户响应</span>&nbsp;（取消或者打开）</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_ONLY_ALERT_ONCE &nbsp;<span style="white-space:pre"></span>//发起Notification后，铃声和震动均只执行一次</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_AUTO_CANCEL &nbsp; &nbsp; &nbsp;//用户单击通知后自动消失</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_NO_CLEAR &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//只有全部清除时，Notification才会清除<span style="line-height:22px">&nbsp;，</span><span style="line-height:22px; padding:0px; margin:0px; white-space:pre">不清楚该通知(QQ的通知无法清除，就是用的这个)</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:22px; white-space:pre">Notification.</span>FLAG_FOREGROUND_SERVICE &nbsp; &nbsp;//表示正在运行的服务</span></p>
+<p style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><br>
+</p>
+<p></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:18px">（2）方法：.setDefaults(int defaults) &nbsp; &nbsp; （NotificationCompat.Builder中的方法，用于提示）</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>功能：向通知添加声音、闪灯和振动效果的最简单、使用默认（defaults）属性，可以组合多个属性（和方法1中提示效果一样的）</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>对应属性：</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px">Notification.DEFAULT_VIBRATE &nbsp; &nbsp;//添加默认震动提醒 &nbsp;需要 VIBRATE permission<br>
+</span>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification.DEFAULT_SOUND &nbsp; &nbsp;//&nbsp;添加默认声音提醒</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px">Notification.DEFAULT_LIGHTS//&nbsp;添加默认三色灯提醒</span>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification.DEFAULT_ALL//&nbsp;添加默认以上3种全部提醒<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:18px">（3）方法：setVibrate(long[] pattern)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">功能：设置震动方式。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">使用：</span></p>
+<p><span style="color:rgb(51,51,51); font-size:14px; font-family:Arial"></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_7_3230838"  code_snippet_id="346153" snippet_file_name="blog_20140515_7_3230838" name="code" class="java">.setVibrate(new long[] {0,300,500,700});</pre><span style="font-family:Microsoft YaHei; font-size:14px">实现效果：延迟0ms，然后振动300ms，在延迟500ms，接着在振动700ms。</span>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">以上方法的还有种写法是</span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_8_832050"  code_snippet_id="346153" snippet_file_name="blog_20140515_8_832050" name="code" class="java">mBuilder.build().vibrate = new long[] {0,300,500,700};</pre><span style="font-family:Microsoft YaHei; font-size:14px">以此类推，2种写法都可以。</span>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">如果希望设置默认振动方式，设置了方法（2）中默认为DEFAULT_VIBRATE 即可。<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">（4）方法：.setLights(int<span style="line-height:22px">ledARGB&nbsp;</span>,int<span style="line-height:22px">ledOnMS&nbsp;</span>,int<span style="line-height:22px">ledOffMS&nbsp;</span>)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+功能：android支持三色灯提醒，这个方法就是设置不同场景下的不同颜色的灯。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">描述：<span style="line-height:22px; padding:0px; margin:0px; white-space:pre">其中</span><span style="line-height:22px">ledARGB 表示灯光颜色、&nbsp;ledOnMS 亮持续时间、ledOffMS 暗的时间。</span><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">注意：1）只有在设置了标志符Flags为<span style="line-height:22px; white-space:pre">Notification.</span>FLAG_SHOW_LIGHTS的时候，才支持三色灯提醒。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"></span></p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px; line-height:22px">
+<span style="font-family:Microsoft YaHei; font-size:14px"><span style="padding:0px; margin:0px; white-space:pre"></span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2）这边的颜色跟设备有关，不是所有的颜色都可以，要看具体设备。</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">使用：</span></p>
+<p><span style="color:rgb(51,51,51); font-size:14px; font-family:Arial"><span style="color:rgb(51,51,51); font-size:14px; font-family:Arial"><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></span></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_9_2097759"  code_snippet_id="346153" snippet_file_name="blog_20140515_9_2097759" name="code" class="java">.setLights(0xff0000ff, 300, 0)</pre><span style="font-family:Microsoft YaHei; font-size:14px">同理，以下方法也可以设置同样效果：<br>
+</span>
+<p><span style="color:rgb(51,51,51); font-size:14px; font-family:Arial"><span style="color:rgb(51,51,51); font-size:14px; font-family:Arial"><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></span></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_10_7855808"  code_snippet_id="346153" snippet_file_name="blog_20140515_10_7855808" name="code" class="java">		Notification notify = mBuilder.build();
+		notify.flags = Notification.FLAG_SHOW_LIGHTS;
+		notify.ledARGB = 0xff0000ff;
+		notify.ledOnMS = 300;
+		notify.ledOffMS = 300;</pre><span style="font-family:Microsoft YaHei; font-size:14px">如果希望使用默认的三色灯提醒，设置了方法（2）中默认为DEFAULT_LIGHTS即可。</span>
+<p></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">（5）方法：.setSound(<a target="_blank" target="_blank" class="header" href="">Uri</a> sound)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+功能：设置默认或则自定义的铃声，来提醒。</span><br>
+</p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_11_8139998"  code_snippet_id="346153" snippet_file_name="blog_20140515_11_8139998" name="code" class="java">		//获取默认铃声
+		.setDefaults(Notification.DEFAULT_SOUND)
+		//获取自定义铃声
+		.setSound(Uri.parse(&quot;file:///sdcard/xx/xx.mp3&quot;))
+		//获取Android多媒体库内的铃声
+		.setSound(Uri.withAppendedPath(Audio.Media.INTERNAL_CONTENT_URI, &quot;5&quot;))</pre>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">同理相同效果的另一种设置方法这边就不讲， 和上面的都是一样的。</span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><br>
+</span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">（6）方法：.setPriority(int pri)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>功能：设置优先级</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>对应优先级描述如下图：</span></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"><span style="white-space:pre"></span></span></span>
+<table style="margin:0px 0px 10px; padding:0px; background-color:rgb(247,247,247); border:0px none; border-collapse:collapse; border-spacing:0px; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:20px">
+<tbody style="margin:0px; padding:0px">
+<tr style="margin:0px; padding:0px">
+<th style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); background-color:rgb(153,153,153); color:rgb(255,255,255)">
+优先级</th>
+<th style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); background-color:rgb(153,153,153); color:rgb(255,255,255)">
+用户</th>
+</tr>
+<tr style="margin:0px; padding:0px">
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+MAX</td>
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+重要而紧急的通知，通知用户这个事件是时间上紧迫的或者需要立即处理的。</td>
+</tr>
+<tr style="margin:0px; padding:0px">
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+HIGH</td>
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+高优先级用于重要的通信内容，例如短消息或者聊天，这些都是对用户来说比较有兴趣的。</td>
+</tr>
+<tr style="margin:0px; padding:0px">
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+DEFAULT</td>
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+默认优先级用于没有特殊优先级分类的通知。</td>
+</tr>
+<tr style="margin:0px; padding:0px">
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+LOW</td>
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+低优先级可以通知用户但又不是很紧急的事件。</td>
+</tr>
+<tr style="margin:0px; padding:0px">
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+MIN</td>
+<td style="margin:0px; padding:4px 12px; border:1px solid rgb(221,221,221); vertical-align:top">
+用于后台消息 (例如天气或者位置信息)。最低优先级通知将只在状态栏显示图标，只有用户下拉通知抽屉才能看到内容。</td>
+</tr>
+</tbody>
+</table>
+<img class="nomarginRight" src="http://adchs.github.io/patterns/notifications_pattern_priority.png" alt="" style="margin:0px 0px 10px; padding:0px; border:0px; max-width:100%; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:20px; background-color:rgb(249,249,249)"></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">对应属性（作用看上图就可知道）：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification.PRIORITY_DEFAULT<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification.PRIORITY_HIGH</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px">Notification.PRIORITY_LOW</span>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification.PRIORITY_MAX</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px">Notification.PRIORITY_MIN</span><br>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"></span></span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">（7）方法：setOngoing(boolean ongoing)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>功能：设置为ture，表示它为一个正在进行的通知。他们通常是用来表示一个后台任务,用户积极参与(如播放音乐)或以某种方式正在等待,因此占用设备(如一个文件下载,同步操作,主动网络连接)</span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">（8）方法：setProgress(int max, int progress,boolean indeterminate)</span></h4>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">属性：max:进度条最大数&#20540; &nbsp;、progress:当前进度、indeterminate:表示进度是否不确定，true为不确定，如下第3幅图所示 &nbsp;，false为确定下第1幅图所示<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">功能：设置带进度条的通知，可以在下载中使用</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">效果图如下：</span></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"><img id="figure1" src="http://developer.android.com/images/ui/notifications/progress_bar_summary.png" height="84" alt="" style="max-width:100%; font-size:14px; border:0px; vertical-align:middle; margin-bottom:15px; color:rgb(34,34,34); font-family:Roboto,sans-serif; line-height:19px; background-color:rgb(249,249,249)">&nbsp;
+ &nbsp; &nbsp; &nbsp;<img id="figure2" src="http://developer.android.com/images/ui/notifications/activity_indicator.png" height="99" alt="" style="border:0px; vertical-align:middle; max-width:100%; margin-bottom:15px; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:19px; background-color:rgb(249,249,249)"><br>
+</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:#ff0000">注意</span>：此方法在4.0及以后版本才有用，如果为<span style="line-height:21px; background-color:rgb(255,255,255)">早期版本：需要自定义通知布局，其中包含ProgressBar视图</span></span></p>
+<p><span style="background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">使用：如果为确定的进度条：<span style="line-height:21px">调用</span><span style="word-wrap:normal; word-break:normal; line-height:14px"><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)" style="text-decoration:none">setProgress(max,
+ progress, false)</a></span><span style="line-height:21px">来设置通知，在更新进度的时候在此发起通知更新<a target="_blank" target="_blank" href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setProgress(int,%20int,%20boolean)" style="line-height:14px; text-decoration:none">progress</a>，并且在下载完成后<span style="line-height:21px">要移除进度条，通过调用</span><span style="word-wrap:normal; word-break:normal; line-height:14px">setProgress(0,
+ 0, false)既可。</span></span></span></span></p>
+<p><span style="line-height:21px"><span style="word-wrap:normal; word-break:normal; line-height:14px"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="background-color:rgb(255,255,255)">如果为不确定（<span style="line-height:21px">持续活动</span>）的进度条，<span style="line-height:21px">这是在处理进度无法准确获知时显示活动正在持续，所以</span>调用<code style="line-height:14px">setProgress(0,
+ 0, true)</code></span><span style="line-height:19px"><span style="background-color:rgb(255,255,255)">&nbsp;，<span style="line-height:21px">操作结束时，调用</span><span style="word-wrap:normal; word-break:normal; line-height:19px"><code style="line-height:14px">setProgress(0,
+ 0, false)</code></span><span style="line-height:21px">并更新通知以移除指示条</span></span></span></span></span></span></p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:18px">第四步：设置通知栏PendingIntent（点击动作事件等都包含在这里）</span></p>
+<p><span style="font-family:'Microsoft YaHei'; font-size:14px">在第三步中，没有提到一个方法，就是</span><span style="font-family:'Microsoft YaHei'; font-size:14px">setContentIntent(</span><a target="_blank" target="_blank" class="header" href="" style="font-family:'Microsoft YaHei'; font-size:14px">PendingIntent</a><span style="font-family:'Microsoft YaHei'; font-size:14px">
+ intent)这个方法，这里拿到这里讲。</span></p>
+<p><span style="font-family:'Microsoft YaHei'; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:'Microsoft YaHei'; font-size:14px"><br>
+</span></p>
+<p><span style="font-size:14px; color:rgb(51,51,51); font-family:Arial"></span></p>
+<h3><span style="font-family:SimSun; font-size:24px; color:#cc0000">知识点</span></h3>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">1）什么是PendingIntent</span></h4>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">PendingIntent和Intent略有不同，它可以设置执行次数，主要用于远程服务通信、闹铃、通知、启动器、短信中，在一般情况下用的比较少。</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px">2）PendingIntent什么用</span></h4>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">Notification支持多种Intent来响应单击事件、消除事件、处理紧急状态的全屏事件等。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">这里就用到了setContentIntent(<a target="_blank" target="_blank" class="header" href="">PendingIntent</a>&nbsp;intent)来处理以上这么多的事件。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h4><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:26px">3）</span><span style="line-height:26px">相关属性和方法</span></span></h4>
+<p><span style="font-family:Microsoft YaHei"><span style="line-height:26px"><span style="font-family:'Microsoft YaHei'; line-height:26px"><span style="font-size:18px">属性：</span></span><br>
+</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:26px">PendingIntent的位标识符：</span></span></p>
+<p><span style="line-height:26px"><span style="font-family:Microsoft YaHei; font-size:14px">FLAG_ONE_SHOT &nbsp; 表示返回的PendingIntent仅能执行一次，执行完后自动取消</span></span></p>
+<p><span style="line-height:26px"><span style="font-family:Microsoft YaHei; font-size:14px">FLAG_NO_CREATE &nbsp; &nbsp;<span style="line-height:26px">&nbsp;表示如果描述的PendingIntent不存在，并不创建相应的PendingIntent，而是返回NULL</span></span></span></p>
+<p><span style="line-height:26px"><span style="font-family:Microsoft YaHei; font-size:14px">FLAG_CANCEL_CURRENT &nbsp; &nbsp;&nbsp;<span style="line-height:26px">&nbsp;表示相应的PendingIntent已经存在，则取消前者，然后创建新的PendingIntent，这个有利于数据保持为最新的，可以用于即时通信的通信场景</span></span></span></p>
+<p><span style="line-height:26px"><span style="font-family:Microsoft YaHei; font-size:14px">FLAG_UPDATE_CURRENT &nbsp; &nbsp; 表示更新的PendingIntent</span></span></p>
+<p><span style="color:rgb(51,51,51); font-family:'Microsoft YaHei'; font-size:14px; line-height:26px"><br>
+</span></p>
+<p><span style="color:rgb(51,51,51)"><span style="color:rgb(51,51,51)"><span style="color:rgb(51,51,51); line-height:26px"><span style="font-family:Microsoft YaHei; font-size:18px">方法：</span></span></span></span></p>
+<p><span style="font-size:14px; color:rgb(51,51,51); font-family:Arial"><img src="http://img.blog.csdn.net/20140511193432625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">可以看出，它支持多种相应方式，有Activity、Broadcast、Service，就根据你自身需求去选择。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">在各种情况下情况下它还会根据各种情况出发效果：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"></span></p>
+<p></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">contentIntent：在通知窗口区域，Notification被单击时的响应事件由该intent触发；</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">deleteIntent：当用户点击全部清除按钮时，响应该清除事件的Intent；</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-family:Microsoft YaHei; font-size:14px">fullScreenIntent：响应紧急状态的全屏事件（例如来电事件），也就是说通知来的时候，跳过在通知区域点击通知这一步，直接执行fullScreenIntent代表的事件。</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:#ff0000">例如</span>：在执行了点击通知之后要跳转到指定的XXX的Activity的时候，可以设置以下方法来相应点击事件：</span></p>
+<p></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_12_1248089"  code_snippet_id="346153" snippet_file_name="blog_20140515_12_1248089" name="code" class="java">Intent intent = new Intent(context,XXX.class);
+PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+mBuilder.setContentIntent(pendingIntent)</pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:#ff0000">例如</span>：在执行了清空全部的通知操作时候，可以设置以下方法来相应这个事件：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">采用setDeleteIntent(<a target="_blank" target="_blank" class="header" href="">PendingIntent</a> intent)方法或按照以下写法</span></p>
+<p></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_13_6657472"  code_snippet_id="346153" snippet_file_name="blog_20140515_13_6657472" name="code" class="java">Intent deleteIntent = new Intent();
+deleteIntent.setClass(context, XXXReceiver.class);
+deleteIntent.setAction(DELETE_ACTION);
+notification.deleteIntent = PendingIntent.getBroadcast(context, 0, deleteIntent, 0);</pre><br>
+<span style="font-family:Microsoft YaHei; font-size:14px"><span style="color:#ff0000">例如</span>：在响应紧急事件（如来电）时候，可以设置以下方法来相应这个事件：</span>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">采用setFullScreenIntent(<a target="_blank" target="_blank" class="header" href="">PendingIntent</a> intent, boolean highPriority)</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:24px">第五步，最简单的一部，发送通知请求</span></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:14px"></span></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_14_9416898"  code_snippet_id="346153" snippet_file_name="blog_20140515_14_9416898" name="code" class="java">mNotificationManager.notify(notifyId, mBuilder.build());</pre>
+<p></p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:10px; font-family:微软雅黑,Verdana,sans-serif,宋体; font-size:14px; line-height:22px">
+<br>
+</p>
+<p style="padding-top:0px; padding-bottom:0px; margin-top:0px; margin-bottom:10px; font-family:微软雅黑,Verdana,sans-serif,宋体; font-size:14px; line-height:22px">
+<br>
+</p>
+<h1><span style="font-family:SimSun; font-size:24px; color:#cc0000">拓展</span></h1>
+<p><span style="font-family:SimSun; font-size:24px; color:#cc0000"><br>
+</span></p>
+<h2><span style="font-family:Arial">实现自定义的通知栏效果：</span></h2>
+<p><span style="font-family:'Microsoft YaHei'; font-size:14px">这里要用到RemoteViews这个类。实现以下2种自定义布局。</span></p>
+<p><span style="font-family:'Microsoft YaHei'; font-size:14px"><br>
+</span></p>
+<div style="font-size:14px"><span style="font-family:'Microsoft YaHei'"><span style="color:#ff0000">注意</span>：</span></div>
+<div>
+<p style="font-size:14px; margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+<span style="font-size:16px"><span style="font-family:Microsoft YaHei">Notification的自定义布局是RemoteViews，和其他<span style="font-size:16px; line-height:26px">RemoteViews一样，在自定义视图布局文件中，</span>仅支持FrameLayout、LinearLayout、RelativeLayout三种布局控件和AnalogClock、Chronometer、Button、ImageButton、ImageView、ProgressBar、TextView、ViewFlipper、ListView、GridView、StackView和AdapterViewFlipper这些显示控件，不支持这些类的子类或Android提供的其他控件。否则会引起ClassNotFoundException异常</span></span></p>
+<p style="color:rgb(51,51,51); margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; line-height:26px">
+</p>
+<p><br>
+</p>
+<p><span style="font-family:'Microsoft YaHei'; font-size:18px">步骤如下：</span></p>
+</div>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">1）创建自定义视图</span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">2）获取远程视图对象（注：Notification的contentView不能为空）</span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">3）设置PendingIntent（来响应各种事件）</span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">4）发起Notification</span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">大体4步骤这里就不详细说了，下面就把DEMO中的列子拿出来说下</span></span></p>
+<p><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></span></p>
+<p><span style="font-family:Arial; color:#333333"><span style="font-size:18px">样式：</span></span></p>
+<p><span style="font-family:Arial"><span style="font-size:18px">1.自定义带按钮通知栏(如下样式)</span></span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></p>
+<div class="column col6" style="margin:0px 20px 0px 0px; padding:0px; float:left; width:340px; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:20px; background-color:rgb(249,249,249)">
+<p>正在进行的</p>
+<p style="margin-top:0px; margin-bottom:10px; padding-top:0px; padding-bottom:0px">
+“正在进行的”通知使用户了解正在运行的后台进程。例如，音乐播放器可以显示正在播放的音乐。也可以用来显示需要长时间处理的操作，例如下载或编码视频。“正在进行的”通知不能被手动删除。</p>
+</div>
+<div class="column col6 nomarginRight" style="margin:0px 20px 0px 0px; padding:0px; float:left; width:340px; color:rgb(34,34,34); font-family:Roboto,sans-serif; font-size:14px; line-height:20px; background-color:rgb(249,249,249)">
+<img class="nomarginRight bigger" src="http://adchs.github.io/patterns/notifications_pattern_ongoing_music.png" alt="" style="margin:0px 0px 10px; padding:0px; border:0px; max-width:100%; width:340px"></div>
+<p><br>
+</p>
+<h1><span style="font-family:Arial; font-size:24px; color:#cc0000"><br>
+</span></h1>
+<h1><span style="font-family:Arial; font-size:24px; color:#cc0000"><br>
+</span></h1>
+<div><span style="color:rgb(204,0,0)"><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:14px">实现方法如下：</span></span></span></div>
+<div><span style="font-family:Arial; font-size:24px; color:#cc0000"><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"></span></span><pre code_snippet_id="346153" snippet_file_name="blog_20140515_15_1271253"  code_snippet_id="346153" snippet_file_name="blog_20140515_15_1271253" name="code" class="java">/**
+	 * 带按钮的通知栏
+	 */
+	public void showButtonNotify(){
+		NotificationCompat.Builder mBuilder = new Builder(this);
+		RemoteViews mRemoteViews = new RemoteViews(getPackageName(), R.layout.view_custom_button);
+		mRemoteViews.setImageViewResource(R.id.custom_song_icon, R.drawable.sing_icon);
+		//API3.0 以上的时候显示按钮，否则消失
+		mRemoteViews.setTextViewText(R.id.tv_custom_song_singer, &quot;周杰伦&quot;);
+		mRemoteViews.setTextViewText(R.id.tv_custom_song_name, &quot;七里香&quot;);
+		//如果版本号低于（3。0），那么不显示按钮
+		if(BaseTools.getSystemVersion() &lt;= 9){
+			mRemoteViews.setViewVisibility(R.id.ll_custom_button, View.GONE);
+		}else{
+			mRemoteViews.setViewVisibility(R.id.ll_custom_button, View.VISIBLE);
+		}
+		//
+		if(isPlay){
+			mRemoteViews.setImageViewResource(R.id.btn_custom_play, R.drawable.btn_pause);
+		}else{
+			mRemoteViews.setImageViewResource(R.id.btn_custom_play, R.drawable.btn_play);
+		}
+		//点击的事件处理
+		Intent buttonIntent = new Intent(ACTION_BUTTON);
+		/* 上一首按钮 */
+		buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PREV_ID);
+		//这里加了广播，所及INTENT的必须用getBroadcast方法
+		PendingIntent intent_prev = PendingIntent.getBroadcast(this, 1, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		mRemoteViews.setOnClickPendingIntent(R.id.btn_custom_prev, intent_prev);
+		/* 播放/暂停  按钮 */
+		buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_PALY_ID);
+		PendingIntent intent_paly = PendingIntent.getBroadcast(this, 2, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		mRemoteViews.setOnClickPendingIntent(R.id.btn_custom_play, intent_paly);
+		/* 下一首 按钮  */
+		buttonIntent.putExtra(INTENT_BUTTONID_TAG, BUTTON_NEXT_ID);
+		PendingIntent intent_next = PendingIntent.getBroadcast(this, 3, buttonIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		mRemoteViews.setOnClickPendingIntent(R.id.btn_custom_next, intent_next);
+		
+		mBuilder.setContent(mRemoteViews)
+				.setContentIntent(getDefalutIntent(Notification.FLAG_ONGOING_EVENT))
+				.setWhen(System.currentTimeMillis())// 通知产生的时间，会在通知信息里显示
+				.setTicker(&quot;正在播放&quot;)
+				.setPriority(Notification.PRIORITY_DEFAULT)// 设置该通知优先级
+				.setOngoing(true)
+				.setSmallIcon(R.drawable.sing_icon);
+		Notification notify = mBuilder.build();
+		notify.flags = Notification.FLAG_ONGOING_EVENT;
+		mNotificationManager.notify(notifyId, notify);
+	}</pre><span style="font-family:Microsoft YaHei; font-size:18px"><span style="color:#ff0000">注意</span>：带按钮的布局相应点击事件在3.0以下版本没有用，所以这边作了系统版本判断，来显示消失按钮。</span></div>
+<p><br>
+</p>
+<div><span style="color:rgb(204,0,0)"><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:18px">2.自定义不带按钮通知栏</span></span></span></div>
+<p><span style="color:rgb(204,0,0)"><span style="color:rgb(51,51,51)"><span style="font-family:Microsoft YaHei; font-size:18px"><br>
+</span></span></span></p>
+<div><span style="font-family:Microsoft YaHei; font-size:14px">实现方法如下：</span></div>
+<div><span style="font-family:Microsoft YaHei; font-size:14px"></span><pre code_snippet_id="346153" snippet_file_name="blog_20140515_16_7095340"  code_snippet_id="346153" snippet_file_name="blog_20140515_16_7095340" name="code" class="java">		//先设定RemoteViews
+		RemoteViews view_custom = new RemoteViews(getPackageName(), R.layout.view_custom);
+		//设置对应IMAGEVIEW的ID的资源图片
+		view_custom.setImageViewResource(R.id.custom_icon, R.drawable.icon);
+//		view_custom.setInt(R.id.custom_icon,&quot;setBackgroundResource&quot;,R.drawable.icon);
+		view_custom.setTextViewText(R.id.tv_custom_title, &quot;今日头条&quot;);
+		view_custom.setTextViewText(R.id.tv_custom_content, &quot;金州勇士官方宣布球队已经解雇了主帅马克-杰克逊，随后宣布了最后的结果。&quot;);</pre><br>
+<br>
+</div>
+<div><span style="font-family:Microsoft YaHei"><span style="font-size:14px">之后调用：</span></span></div>
+<div><pre code_snippet_id="346153" snippet_file_name="blog_20140515_17_7346511"  code_snippet_id="346153" snippet_file_name="blog_20140515_17_7346511" name="code" class="java"><span style="font-family: Arial, Helvetica, sans-serif;">mBuilder.setContent(view_custom)</span></pre></div>
+<div><span style="font-family:'Microsoft YaHei'; font-size:14px">来设定自定义的这个布局。</span></div>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<div><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></div>
+<h2><span style="font-size:18px">实现：大视图风&#26684;通知（注：<span style="font-family:'Heiti sC Light'; background-color:rgb(255,255,255)">4.1之前的版本不支持大视图</span>）</span></h2>
+<div>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal; color:rgb(70,70,70); font-size:14px; font-family:'Heiti sC Light'">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; font-size:18px; background-color:rgb(255,255,255)"><br>
+</span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">只在通知被展开时显示</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">何时展开：通知处在顶端，或者用户通过收拾展开</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">收件箱风&#26684;的通知：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="font-family:Microsoft YaHei; font-size:14px"><span style="word-wrap:normal; word-break:normal; line-height:27px"></span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="word-wrap:normal; word-break:normal; line-height:27px">相比普通视图，只多出：</span>7. 详情区域</span></span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+效果图如下：</span></div>
+<div><img src="http://developer.android.com/images/ui/notifications/bigpicture_notification_callouts.png" alt=""><br>
+</div>
+<div><span style="background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:27px">详情区域根据用途可有多种风&#26684;</span>：</span></span></div>
+<div>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">1.NotificationCompat.BigPictureStyle&nbsp;大图片风&#26684;：详情区域包含一个256dp高度的位图</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">2.<span style="line-height:27px">NotificationCompat.BigTextStyle&nbsp;</span>大文字风&#26684;：显示一个大的文字块</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">3.NotificationCompat.InboxStyle &nbsp;收件箱风&#26684;：显示多行文字 &nbsp;</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">各种风&#26684;都具有以下常规视图不具有的内容选项：</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">1.大标题：在展开视图时替代普通视图的标记<br>
+</span></span></p>
+<p style="margin-top:0px; margin-bottom:0px; padding-top:0px; padding-bottom:0px; border:0px; list-style:none; word-wrap:normal; word-break:normal">
+<span style="word-wrap:normal; word-break:normal; line-height:27px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:27px">2.</span>总结文字：允许你在详情区域之下增加一行内容</span></span></p>
+<span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></div>
+<div><span style="font-family:Microsoft YaHei; font-size:14px">拿收件箱风&#26684;为例，实现代码如下:</span></div>
+<div><pre code_snippet_id="346153" snippet_file_name="blog_20140515_18_2614192"  code_snippet_id="346153" snippet_file_name="blog_20140515_18_2614192" name="code" class="java">		NotificationCompat.BigPictureStyle inboxStyle = new NotificationCompat.InboxStyle();
+		String[] events = new String[5];
+		// Sets a title for the Inbox style big view
+		inboxStyle.setBigContentTitle(&quot;大视图内容:&quot;);
+		// Moves events into the big view
+		for (int i=0; i &lt; events.length; i++) {
+		    inboxStyle.addLine(events[i]);
+		}
+		mBuilder.setContentTitle(&quot;测试标题&quot;)
+				.setContentText(&quot;测试内容&quot;)
+//				.setNumber(number)//显示数量
+				.setStyle(inboxStyle)//设置风格
+				.setTicker(&quot;测试通知来啦&quot;);</pre><br>
+<br>
+</div>
+<div><br>
+</div>
+<h1><span style="font-family:Arial; color:rgb(204,0,0)">开发中碰到的问题</span></h1>
+<p>（<span style="color:rgb(51,51,51); font-family:Arial; font-size:14px; white-space:pre"><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px">注：下面所指的低版本是指2.3及2.3以下版本</span></span>）</p>
+<h2><span style="font-family:Arial; color:#333333"><span style="font-size:18px">1.如何取消掉通知栏上的通知</span></span></h2>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; （1）设置对应的flags，让用户点击既被消除：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>notification.flags = FLAG_AUTO_CANCEL;</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp; &nbsp; (2) 通过手动消除某项或则全部通知</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>mNotificationMgr.cancle(NOTIFICATION_ID);//消除对应ID的通知</span></p>
+<p><span style="white-space:pre"><span style="font-family:Microsoft YaHei; font-size:14px">mNotificationMgr.cancleAll();//消除创建的所有通知</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">2.低版本中的部分方法已经被弃用的</span></h2>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">&nbsp;（1）Notification.Builder(this).getNotification()</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="white-space:pre"></span>&nbsp;（2）mNotification.setLatestEventInfo(this, &quot;title&quot;, &quot;content&quot;, null); &nbsp;</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">这些方法都已经被启用，虽然还有效果，可是不建议使用。所以开发过程中尽量使用NotificationCompat.Builder(this)的构建方法去创建一个通知类。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">3.低版本中会报的错误及解决方案：</span></h2>
+<p><span style="font-family:'Microsoft YaHei'; background-color:rgb(255,255,255)"><span style="font-size:14px">（1）错误代码：java.lang.IllegalArgumentException: contentIntent required: pkg=com.example.notifications id=100 notification=Notification(vibrate=default,sound=null,defaults=0x2,flags=0x0)</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)"><span style="white-space:pre"></span>解决方案：如果在高版本不会出错，而在2.3上面报了这个错误，通过开发文档中的以下知道你可以找打：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)">For this reason, you should always ensure that UI controls in a notification are also available in an&nbsp;<code style="line-height:16px"><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/app/Activity.html">Activity</a></code>&nbsp;in
+ your app, and you should always start that&nbsp;<code style="line-height:16px"><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/app/Activity.html">Activity</a></code>&nbsp;when users click the notification. To do this, use the&nbsp;<code style="line-height:16px"><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent)">setContentIntent()</a></code>&nbsp;method.<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)">你就应该知道，缺少了<code style="line-height:16px"><a target="_blank" target="_blank" href="http://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#setContentIntent(android.app.PendingIntent)">setContentIntent()</a></code>&nbsp;这个方法，在2.3及更低的版本中，必须给它设置<span style="line-height:26px">设置</span><span style="line-height:26px">contentIntent</span>，如果你点击没有意图，可以在赋&#20540;的的Intent中设置为new
+ Intent()既可，切记<span style="line-height:26px">contentIntent不能为空。</span></span></p>
+<p><span style="line-height:26px; background-color:rgb(255,255,255)"><span style="font-family:Microsoft YaHei; font-size:14px">代码如下：</span></span></p>
+<p><span style="color:rgb(51,51,51); font-family:Arial; font-size:14px"><span style="font-size:14px; color:rgb(34,34,34); font-family:Roboto,sans-serif; background-color:rgb(249,249,249)"><span style="color:rgb(54,46,43); font-family:Arial; font-size:13px; line-height:26px; background-color:rgb(249,249,249)"></span></span></span></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_19_2341975"  code_snippet_id="346153" snippet_file_name="blog_20140515_19_2341975" name="code" class="java">	public PendingIntent getDefalutIntent(int flags){
+		PendingIntent pendingIntent= PendingIntent.getActivity(this, 1, new Intent(), flags);
+		return pendingIntent;
+	}</pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">（2）错误代码：android.app.RemoteServiceException: Bad notification posted from package com.example.notifications: Couldn't expand RemoteViews for: StatusBarNotification(package=com.example.notifications
+ id=101 tag=null notification=Notification(vibrate=null,sound=null,defaults=0x0,flags=0x2))</span></p>
+<p>解决方法：</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)">在自定义的时候，发现了这个问题，解决：<span style="line-height:24px">每次更新时都必须把RemoteViews给new出来才行，不能利用已有的notification.contentView直接操作！</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px; background-color:rgb(255,255,255)"><span style="line-height:24px"><br>
+</span></span></p>
+<p></p>
+<h2>4.低版本中，自定义的通知栏中如果带有按钮，可能按钮点击事件会失灵</h2>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">解决方法：看其它的应用，好像在低版本都会隐藏掉那些按钮，就是为了不影响用户体验，所以应该就这么解决，判断版本号在去决定是否现在按钮。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">5.低版本中，自定义布局中的字体颜色看不清</span></h2>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">如右图</span>：<img src="http://img.blog.csdn.net/20140508203234140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">解决方案：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">由于2.3及之前版本，背景设是白色的那我们定义字体颜色为系统预设的颜色：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">?android:attr/textColorPrimary<br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">在资源的src/values目录中的style.xml文件中设置它标题和内容的样式为：</span></p>
+<p></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_20_1131666"  code_snippet_id="346153" snippet_file_name="blog_20140515_20_1131666" name="code" class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;resources&gt;  
+  
+    &lt;style name=&quot;NotificationContent&quot;&gt;  
+        &lt;item name=&quot;android:textColor&quot;&gt;?android:attr/textColorPrimary&lt;/item&gt;  
+    &lt;/style&gt;  
+  
+    &lt;style name=&quot;NotificationTitle&quot;&gt;  
+        &lt;item name=&quot;android:textColor&quot;&gt;?android:attr/textColorPrimary&lt;/item&gt;  
+        &lt;item name=&quot;android:textStyle&quot;&gt;bold&lt;/item&gt;  
+    &lt;/style&gt;  
+  
+&lt;/resources&gt;</pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:18px">在2.3之后的版本中（即API &gt;=9的版本中），在资源文件下的src/values-v9目录中的style.xml文件中设置它标题和内容的样式为：</span></p>
+<p></p>
+<p></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_21_9987396"  code_snippet_id="346153" snippet_file_name="blog_20140515_21_9987396" name="code" class="java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;  
+&lt;resources&gt;  
+  
+    &lt;style name=&quot;NotificationContent&quot; parent=&quot;android:TextAppearance.StatusBar.EventContent&quot; /&gt;  
+  
+    &lt;style name=&quot;NotificationTitle&quot; parent=&quot;android:TextAppearance.StatusBar.EventContent.Title&quot; /&gt;  
+  
+&lt;/resources&gt;  </pre>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">最后赋给自定义布局中的对应标题和内容对应的style即可。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">对应解决网址：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">1.http://stackoverflow.com/questions/6250356/how-to-use-default-notification-style</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">2.http://stackoverflow.com/questions/4867338/custom-notification-layouts-and-text-colors/7320604#7320604</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">3.<span style="color:rgb(68,68,68); line-height:21px">http://developer.android.com/guide/topics/ui/notifiers/notifications.html#CustomExpandedView &nbsp; （官方文档）</span></span></p>
+<p><span style="color:rgb(68,68,68); line-height:21px"><span style="font-family:Microsoft YaHei; font-size:14px">http://developer.android.com/about/versions/android-2.2-highlights.html</span><br>
+</span></p>
+<p><br>
+</p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">6.低版本中mBuilder.setProgress(100, progress, false);没用，不显示进度条</span></h2>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">解决方法：此方法在4.0及以后版本才有用，如果为<span style="line-height:21px">早期版本：需要自定义通知布局，其中包含ProgressBar视图</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:21px"><br>
+</span></span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><span style="line-height:21px"><br>
+</span></span></p>
+<h2><span style="font-family:Microsoft YaHei; font-size:18px">7.自定义布局的时候，不同版本方法不一样。（弄了半天，在2.3版本不显示，原来是方法不兼容）</span></h2>
+<p><span style="font-family:Microsoft YaHei; font-size:14px"><br>
+</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">2.3及2.3之前：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">通过</span><br>
+</p>
+<p></p>
+<pre code_snippet_id="346153" snippet_file_name="blog_20140515_22_8111996"  code_snippet_id="346153" snippet_file_name="blog_20140515_22_8111996" name="code" class="java">		Notification notify = mBuilder.build();
+		notify.contentView = view_custom;
+		mNotificationManager.notify(notifyId, notify)</pre><span style="font-family:Microsoft YaHei; font-size:14px">方法赋予VIEW。</span>
+<p></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">2.3之后：</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">通过Builder以下方法赋于自定义布局。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:14px">mBuilder.setContent(view_custom)</span></p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><span style="font-family:Microsoft YaHei; font-size:24px">这里就不贴DEMO中的代码了，大家可以下个DEMO自己看，里面也都有注释的，可能有的地方会有错误，忘大家指出，以便及时修改，谢谢。</span></p>
+<p><span style="font-family:Microsoft YaHei; font-size:24px"><br>
+</span></p>
+<p><span style="font-size:24px"><span style="font-size:24px">一个DEMO让你更懂Notification</span><br>
+</span></p>
+<h1><span style="font-size:24px; color:#cc0000">DEMO截图：</span></h1>
+<p><span style="font-size:24px"><img src="http://img.blog.csdn.net/20140514223056828?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="240" height="426" alt="">&nbsp; &nbsp; &nbsp;<img src="http://img.blog.csdn.net/20140514223105515?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="240" height="426" alt="">&nbsp;
+ &nbsp; &nbsp;<img src="http://img.blog.csdn.net/20140514223108343?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdmlwemp5bm8x/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" width="240" height="426" alt=""><br>
+</span></p>
+<p><span style="font-size:24px"><br>
+</span></p>
+<h1><span style="font-size:24px; color:#cc0000">DEMO下载</span>：<a target="_blank" href="http://download.csdn.net/detail/vipzjyno1/7348889"><span style="color:#990000">下载地址</span></a></h1>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.15-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+
+        <div id="digg" ArticleId="25248021" >
+            <dl id="btnDigg" class="digg digg_disable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>213</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_disable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>2</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/vipzjyno1/article/details/25423543';">上一篇</span><a href="/vipzjyno1/article/details/25423543" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">从注册流程 分析如何安全退出多个Activity   多种方式（附DEMO）</a></li>
+                <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/vipzjyno1/article/details/26004831';">下一篇</span><a href="/vipzjyno1/article/details/26004831" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">Android 服务类Service 的详细学习</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article"  style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c"style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span  style="cursor:pointer"  onclick="GetCategoryArticles('2050837','vipzjyno1','foot','25248021');">android<em>（19）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141"  style="max-height:195px;">
+                        <a href="http://blog.csdn.net" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script  type="text/javascript">
+        $(function () {
+            GetCategoryArticles('2050837', 'vipzjyno1','foot','25248021');
+        });
+    </script>
+      
+</div>
+
+     <div>
+             <ins data-revive-zoneid="206" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+    </div>
+
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/vipzjyno1/svc/GetSuggestContent/25248021",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="http://static.blog.csdn.net/css/replace.css"/>
+<div id="relate" data-mod="popu_218"  class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+    <div class="embody embody_b" id="libkeyparent"  style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "25248021",
+                username: "",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = 'Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+
+    <div id="ad_cen">        
+                      <ins data-revive-zoneid="199" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    </div>  
+
+    <!-- 广告位开始 -->
+    <ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '25248021';
+    var commentscount = 125;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script  language="javascript" type='text/javascript'>     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/vipzjyno1/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/async_new.js"></script>      
+
+
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+               
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/vipzjyno1" target="_blank">
+    <img src="http://avatar.csdn.net/0/0/D/1_vipzjyno1.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/vipzjyno1" class="user_name" target="_blank">vipzjyno1</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=vipzjyno1','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>1682802次</span></li>
+    <li>积分：<span>5839</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog6.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：5839 </div>
+        </span>  </li>
+    <li>排名：<span>第3476名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>22篇</span></li>
+    <li>转载：<span>7篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>1011条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+
+<div id="custom_column_39255421" class="panel">
+<ul class="panel_head"><span>Github，爱开源、分享</span></ul>
+<ul class="panel_body">
+
+<li style="padding:3px"><a target="_blank" href="https://github.com/Rano1"><font color="red" size="2">https://github.com/Rano1</font></a>
+</li>
+</ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/vipzjyno1/article/category/2050593" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">转载</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/vipzjyno1/article/category/1922005" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">感悟期望</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/vipzjyno1/article/category/888110" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">疑问</a><span>(0)</span>
+                </li>
+                 <li>
+                    <a href="/vipzjyno1/article/category/2050837" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">android</a><span>(20)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/vipzjyno1/article/month/2014/05">2014年05月</a><span>(6)</span></li><li><a href="/vipzjyno1/article/month/2014/04">2014年04月</a><span>(14)</span></li><li><a href="/vipzjyno1/article/month/2014/03">2014年03月</a><span>(8)</span></li><li><a href="/vipzjyno1/article/month/2014/02">2014年02月</a><span>(1)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/vipzjyno1/article/details/21039349" title="Android APK反编译就这么简单  详解（附图）">Android APK反编译就这么简单  详解（附图）</a><span>(622025)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/25248021" title="Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）</a><span>(167447)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23206387" title="Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）">Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）</a><span>(163820)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23542617" title="Android 命名规范 （提高代码可以读性）">Android 命名规范 （提高代码可以读性）</a><span>(85985)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23707149" title="SwitchButton 开关按钮 的多种实现方式  （附源码DEMO）">SwitchButton 开关按钮 的多种实现方式  （附源码DEMO）</a><span>(72562)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/21042823" title="Android如何防止apk程序被反编译">Android如何防止apk程序被反编译</a><span>(50153)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/26514543" title="（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇">（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇</a><span>(49632)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23614675" title="Android SlidingMenu 开源项目 侧拉菜单的使用（详细配置）">Android SlidingMenu 开源项目 侧拉菜单的使用（详细配置）</a><span>(46621)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23696537" title="android  自定义控件 使用declare-styleable进行配置属性（源码角度）">android  自定义控件 使用declare-styleable进行配置属性（源码角度）</a><span>(42215)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/22098621" title="GitHub超详细图文攻略 - Git客户端下载安装 GitHub提交修改源码工作流程 Git分支 标签 过滤 Git版本工作流">GitHub超详细图文攻略 - Git客户端下载安装 GitHub提交修改源码工作流程 Git分支 标签 过滤 Git版本工作流</a><span>(38449)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/vipzjyno1/article/details/21039349" title="Android APK反编译就这么简单  详解（附图）">Android APK反编译就这么简单  详解（附图）</a><span>(173)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/26514543" title="（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇">（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇</a><span>(129)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/25248021" title="Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）</a><span>(125)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23206387" title="Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）">Android-Universal-Image-Loader 图片异步加载类库的使用（超详细配置）</a><span>(99)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23619269" title="（android高仿系列）今日头条 --新闻阅读器 （二）">（android高仿系列）今日头条 --新闻阅读器 （二）</a><span>(81)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/25005851" title="Android 高仿 频道管理----网易、今日头条、腾讯视频  （可以拖动的GridView）附源码DEMO">Android 高仿 频道管理----网易、今日头条、腾讯视频  （可以拖动的GridView）附源码DEMO</a><span>(59)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23707149" title="SwitchButton 开关按钮 的多种实现方式  （附源码DEMO）">SwitchButton 开关按钮 的多种实现方式  （附源码DEMO）</a><span>(45)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/19763963" title="一个菜鸟对于过去和未来的感悟和展望">一个菜鸟对于过去和未来的感悟和展望</a><span>(45)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/23591315" title="（android高仿系列）今日头条 --新闻阅读器  （一）">（android高仿系列）今日头条 --新闻阅读器  （一）</a><span>(34)</span>
+</li>
+<li>
+<a href="/vipzjyno1/article/details/24664161" title="Android 仿 窗帘效果 和 登录界面拖动效果  （Scroller类的应用） 附 2个DEMO及源码">Android 仿 窗帘效果 和 登录界面拖动效果  （Scroller类的应用） 附 2个DEMO及源码</a><span>(33)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/laoyang360/article/details/53843771" target="_blank">* 而立之年——三线城市程序员的年终告白</a></li>
+<li><a href="http://blog.csdn.net/sdkfjksf/article/details/54380659" 
+target="_blank">* Java集合框架中隐藏的设计套路</a></li>
+<li><a href="http://blog.csdn.net/jiangwei0910410003/article/details/54092364" 
+target="_blank">* Python脚本下载今日头条视频(附加Android版本辅助下载器)</a></li>
+<li><a href="http://blog.csdn.net/caowenbin/article/details/54406716" target="_blank">* 人工智能的冷思考</a></li>
+<li><a href="http://blog.csdn.net/it_talk/article/details/54346566" 
+target="_blank">* React Native 实战系列教程之热更新原理分析与实现</a></li>
+
+
+</ul></ul>
+</div>
+
+
+<div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/vipzjyno1/article/details/21039349#comments">Android APK反编译就这么简单  详解（附图）</a>
+    <p style="margin:0px;"><a href="/ysc123shift" class="user_name">ysc123shift</a>:
+这个是我总结出来最新的apk反编译教程，本博客有些东西陈旧了，已经没法用了。我看了最新的apk反编译...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/21039349#comments">Android APK反编译就这么简单  详解（附图）</a>
+    <p style="margin:0px;"><a href="/MAN20061018" class="user_name">MAN20061018</a>:
+太强大了，强的有点可怕， 软件怎么加密才能安全？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/21039349#comments">Android APK反编译就这么简单  详解（附图）</a>
+    <p style="margin:0px;"><a href="/qq_37320420" class="user_name">qq_37320420</a>:
+博主！下载下来不是可运行的exe文件啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/21039349#comments">Android APK反编译就这么简单  详解（附图）</a>
+    <p style="margin:0px;"><a href="/ymjiang820" class="user_name">ymjiang820</a>:
+6666
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/25248021#comments">Android 通知栏Notification的整合 全面学习 （一个DEMO让你完全了解它）</a>
+    <p style="margin:0px;"><a href="/wuhongqi0012" class="user_name">wuhongqi0012</a>:
+你好 怎么样实现锁屏的时候显示通知啊 我在应用的通知中心打开了锁屏通知选项 还是没有用啊
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/26514543#comments">（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇</a>
+    <p style="margin:0px;"><a href="/huaipiao4111" class="user_name">huaipiao4111</a>:
+为什么我下载的有错误，R文件丢失之类的，没有人有这个错误么？？？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/26514543#comments">Android APK反编译就这么简单  详解（附图）</a>
+    <p style="margin:0px;"><a href="/qq_37065997" class="user_name">qq_37065997</a>:
+我把输出文件夹定在桌面，结果把我桌面上的所有快捷方式和保存在桌面的临时文件全部删除了
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/26514543#comments">（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇</a>
+    <p style="margin:0px;"><a href="/fangjingjingll" class="user_name">fangjingjingll</a>:
+@awu515:你这个解决了吗？
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/24664161#comments">Android 仿 窗帘效果 和 登录界面拖动效果  （Scroller类的应用） 附 2个DEMO及源码</a>
+    <p style="margin:0px;"><a href="/u014616515" class="user_name">u014616515</a>:
+@loe15919252:明显是作者自己写的工具类，知道作用就行了，自己网上找
+    </p>
+    </li>
+    <li>
+   
+         <a href="/vipzjyno1/article/details/24664161#comments">（android高仿系列）今日头条 --新闻阅读器 （三） 完结 、总结 篇</a>
+    <p style="margin:0px;"><a href="/renshen0123" class="user_name">renshen0123</a>:
+楼主，gbk编码导航栏编码错误怎么回事啊
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+
+
+                   <!-- 广告位开始 --> 
+                    <ins data-revive-zoneid="190" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins> 
+                    <!-- 广告位结束 -->
+
+           </div>   
+
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=1178541"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_code.css" />
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/saveToCode.js"></script>
+      <script type="text/javascript" src="//csdnimg.cn/rabbit/tracking-ad/main.js?75eacd8"></script>
+
+     <link rel="stylesheet" href="http://static.blog.csdn.net/css/fa.css" />
+
+    <div class="pop_CA_cover"  style="display:none"></div>
+    <div class="pop pop_CA"  style="display:none">
+          <div class="CA_header">
+            收藏助手
+            <span class="cancel_icon"  id="fapancle"  onclick="$('.pop_CA').hide();$('.pop_CA_cover').hide();"></span>
+          </div>
+          <iframe src="" id="fa" frameborder="0" width="100%" height="360"  scrolling="no" />
+    </div>
+</body>
+</html>   
+ 
