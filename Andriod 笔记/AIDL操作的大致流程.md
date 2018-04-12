@@ -1,0 +1,13 @@
+##AIDL大致流程：
+
+### 首先创建一个Service和一个AIDL接口，AIDL中定义需要暴露的方法，接着创建一个类继承自AIDL接口中Stub类并实现Stub中的抽象方法，在Service的onBind方法中返回这个类的对象，然后客户端复制AIDL文件，绑定服务端的Service，建立连接后就可以远程访问服务端了
+
+##binder连接池
+###binder连接池的工作机制
+每个业务模块创建自己的AIDL接口并实现此接口，这个时候不同的模块之间是不能有耦合的，所有实现细节我们都要单独开来，然后想服务端提供自己的唯一标识和其对应的BInder对象；对于服务端来说，只需要一个service就可以了，服务端提供一个queryBinder接口，这个接口能够根据业务模块的特征来返回相应的BInder对象给它们，不同的业务模块拿到所需的BInder对象后就可以进行远程方法调用了。由此可见，Binder连接池的主要作用就是将每个业务模块的BInder请求统一转发到远程Service中去执行，避免了重复创建Service的过程
+
+
+###binder连接池的作用
+* 1、BInder连接池创建AIDL接口--这个AIDL接口提供查询Binder的方
+法queryBinder(int binderCode)
+* 2、新建一个IBinder.stub实现queryBinder()方法

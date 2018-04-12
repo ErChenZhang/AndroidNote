@@ -110,46 +110,46 @@
 			}
 	* excuate()--先判断这个请求是否执行了，然后通过getResponseWithInterceptorChain()获取响应
 			
-				@Override
-		   	 public Response execute() throws IOException {
-		        synchronized (this) {
-		            if (executed) throw new IllegalStateException("Already Executed"); //(1)
-		            executed = true;
-		        }
-		        try {
-		            client.dispatcher.executed(this);//(2)
-		            Response result = getResponseWithInterceptorChain();//(3)
-		            if (result == null) throw new IOException("Canceled");
-		            return result;
-		        }finally {
-		            client.dispatcher.finished(this);//(4)
-		        }
-		    }
+			@Override
+	   	 public Response execute() throws IOException {
+	        synchronized (this) {
+	            if (executed) throw new IllegalStateException("Already Executed"); //(1)
+	            executed = true;
+	        }
+	        try {
+	            client.dispatcher.executed(this);//(2)
+	            Response result = getResponseWithInterceptorChain();//(3)
+	            if (result == null) throw new IOException("Canceled");
+	            return result;
+	        }finally {
+	            client.dispatcher.finished(this);//(4)
+	        }
+	    }
 
 	* getResponseWithInterceptorChain()--使用拦截器的责任链获取响应，然后proceed()开始执行链式拦截器
 		
-				//将拦截器链式加入，通过链式调用
-				//拦截器的作用：拦截器是OkHttp框架提供的对http的请求和响应进行同意处理的机制
-				//多个拦截器还可以连接形成一个链再使用，拦截器会按照链式上的顺序依次执行
-				//拦截器会先对请求进行修改，然后获取响应之后也会对响应进行修改
-			 private Response getResponseWithInterceptorChain() throws IOException {
-			     // Build a full stack of interceptors.
-			     List<Interceptor> interceptors = new ArrayList<>();
-			     interceptors.addAll(client.interceptors());     //(1)
-			     interceptors.add(retryAndFollowUpInterceptor);    //(2)
-			     interceptors.add(new BridgeInterceptor(client.cookieJar()));    //(3)
-			     interceptors.add(new CacheInterceptor(client.internalCache()));    //(4)
-			     interceptors.add(new ConnectInterceptor(client));    //(5)
-			     if (!retryAndFollowUpInterceptor.isForWebSocket()) {
-			         interceptors.addAll(client.networkInterceptors());    //(6)
-			     }
-			     interceptors.add(new CallServerInterceptor(
-			             retryAndFollowUpInterceptor.isForWebSocket()));     //(7)
-			
-			     Interceptor.Chain chain = new RealInterceptorChain(
-			             interceptors, null, null, null, 0, originalRequest);
-			     return chain.proceed(originalRequest); //  <<=========开始链式调用
-			 }
+			//将拦截器链式加入，通过链式调用
+			//拦截器的作用：拦截器是OkHttp框架提供的对http的请求和响应进行同意处理的机制
+			//多个拦截器还可以连接形成一个链再使用，拦截器会按照链式上的顺序依次执行
+			//拦截器会先对请求进行修改，然后获取响应之后也会对响应进行修改
+		 private Response getResponseWithInterceptorChain() throws IOException {
+		     // Build a full stack of interceptors.
+		     List<Interceptor> interceptors = new ArrayList<>();
+		     interceptors.addAll(client.interceptors());     //(1)
+		     interceptors.add(retryAndFollowUpInterceptor);    //(2)
+		     interceptors.add(new BridgeInterceptor(client.cookieJar()));    //(3)
+		     interceptors.add(new CacheInterceptor(client.internalCache()));    //(4)
+		     interceptors.add(new ConnectInterceptor(client));    //(5)
+		     if (!retryAndFollowUpInterceptor.isForWebSocket()) {
+		         interceptors.addAll(client.networkInterceptors());    //(6)
+		     }
+		     interceptors.add(new CallServerInterceptor(
+		             retryAndFollowUpInterceptor.isForWebSocket()));     //(7)
+		
+		     Interceptor.Chain chain = new RealInterceptorChain(
+		             interceptors, null, null, null, 0, originalRequest);
+		     return chain.proceed(originalRequest); //  <<=========开始链式调用
+		 }
 	
 	* proceed()--实例化一个RealIterceptorChain对象，在一个存放Interceptor的ArrayList中获取当前的Interceptor,
 		当前的Interceptor.intercept()方法调用RealIterceptorChain，并传递
@@ -401,3 +401,5 @@
 		        }
 		    }
 		}
+
+
